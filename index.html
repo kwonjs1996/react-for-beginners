@@ -53,10 +53,48 @@
       );
     }
     function KmToMile() {
-      return <h3>KM to Mile</h3>;
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
+      const onChange = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const onInvert = () => {
+        setInverted((current) => !current);
+      };
+      return (
+        <div>
+          <div>
+            <label htmlFor="km">KM</label>
+            <input
+              value={inverted ? amount * 1.609 : amount}
+              type="number"
+              placeholder="KM"
+              id="km"
+              onChange={onChange}
+              disabled={inverted === true}
+            ></input>
+          </div>
+          <div>
+            <label htmlFor="mile">Mile</label>
+            <input
+              value={inverted ? amount : amount / 1.609}
+              type="number"
+              placeholder="Mile"
+              id="mile"
+              onChange={onChange}
+              disabled={inverted === false}
+            ></input>
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn Back" : "Invert"}
+          </button>
+        </div>
+      );
     }
     function App() {
-      const [index, setIndex] = React.useState("0");
+      const [index, setIndex] = React.useState("1");
       const onSelect = (event) => {
         setIndex(event.target.value);
       };

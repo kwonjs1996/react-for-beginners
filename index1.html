@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ text, onClick }) {
+      return (
+        <button
+          onClick={onClick}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    // JSX 에서는 APP 컴포넌트에서 Btn이라는 함수를 가져와 재사용을 한다고 생각
+    // 각 Btn 함수들은 각각의 값을 가지고 부모컴포넌트(App) => 자식컴포넌트(Btn)에게 데이터를 넘겨줄때
+    // props(text)를 사용한다 이때 props(text) 오브젝트이다. === props.text==={text}
+    // <Btn onClick===프랍(컴포넌트 안에 들어가는 무언가) /> 과
+    //함수 안의 onClick=== <button> 태그를 위한 이벤트리스너
+    //둘의 생김새는 같지만 전혀 다르다 인지!
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        <div>
+          <Btn text={value} onClick={changeValue} />
+          <Btn text="Continue" />
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

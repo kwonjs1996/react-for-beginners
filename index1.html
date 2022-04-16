@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
   <script type="text/babel">
-    function Btn({ text, onClick, fontSize }) {
+    function Btn({ text, onClick, fontSize = 16 }) {
       console.log(text, "rendered");
       return (
         <button
@@ -45,7 +45,7 @@
       const changeValue = () => setValue("Revert Changes");
       return (
         <div>
-          <Btn text={value} onClick={changeValue} fontSize="123" />
+          <Btn text={value} onClick={changeValue} fontSize={18} />
           <Btn text="Continue" />
         </div>
       );
